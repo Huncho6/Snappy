@@ -5,6 +5,7 @@ const Wrapper = styled.div`
 padding: 24px;
 display: flex;
 gap: 24px;
+height: 100px;
 `;
 
 interface ActionCenterProps{

@@ -24,7 +24,9 @@ interface ButtonProps {
   bg?: string;
   color?: string;
   width?: string;
+  height?: string
   borderColor?: string;
+  type?: "button" | "submit" | "reset";
 }
 
 const Button = ({
@@ -34,6 +36,8 @@ const Button = ({
   color,
   width,
   borderColor,
+  height,
+  type
 }: ButtonProps) => {
   return (
     <Wrapper
@@ -42,6 +46,8 @@ const Button = ({
       width={width}
       borderColor={borderColor}
       onClick={onClick}
+      height={height}
+      type={type}
     >
       {text}
     </Wrapper>

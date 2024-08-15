@@ -5,7 +5,6 @@ const Wrapper = styled.div `
 background: #ff6f61;
 width: 100vw;
 height: 100vh;
-
 `;
 
 const App = () => {
