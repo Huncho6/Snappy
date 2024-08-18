@@ -2,13 +2,13 @@ import styled from "styled-components";
 import { colors } from "../../utils/colors";
 
 const Wrapper = styled.div`
-  height: 100px;
+  height: 60px;
   border-bottom: 1px solid #ccc;
   padding: 24px;
   display: flex;
   align-items: center;
   gap: 24px;
-  width: 100%;
+  width: 100%; 
   overflow-x: auto;
   scrollbar-width: none;
   -ms-overflow-style: none;

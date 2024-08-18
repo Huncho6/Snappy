@@ -12,9 +12,9 @@ const Wrapper = styled.button<ButtonStyleProps>`
   color: ${(props) => props.color || "#fff"};
   background-color: ${(props) => props.bg || "#403234"};
   width: ${(props) => props.width || "100%"};
-  height: ${(props) => props.height || "auto"};
+  height: ${(props) => props.height || "40px"};
   padding: 12px 24px;
-  border-radius: 8px;
+  border-radius: 10px;
   border: ${(props) =>`1px solid ${props.borderColor ?? "none"}`};
 `;
 
@@ -27,6 +27,7 @@ interface ButtonProps {
   height?: string
   borderColor?: string;
   type?: "button" | "submit" | "reset";
+  disabled?: boolean;
 }
 
 const Button = ({
@@ -37,7 +38,8 @@ const Button = ({
   width,
   borderColor,
   height,
-  type
+  type,
+  disabled
 }: ButtonProps) => {
   return (
     <Wrapper
@@ -48,6 +50,7 @@ const Button = ({
       onClick={onClick}
       height={height}
       type={type}
+      disabled={disabled}
     >
       {text}
     </Wrapper>

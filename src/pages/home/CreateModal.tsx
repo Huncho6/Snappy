@@ -3,6 +3,7 @@ import { MdCancel } from "react-icons/md";
 import { useRef, useState } from "react";
 import Button from "./Button";
 import axios from "axios";
+import { IoPerson } from "react-icons/io5";
 //designing a backdrop that is exportable 
 const Backdrop = styled.div`
   position: fixed;
@@ -85,13 +86,13 @@ interface CreateModalProps {
 
 const CreateModal = ({ setOpenCreateModal }: CreateModalProps) => {
   const inputRef = useRef(null);
-  const [userName, setUserName] = useState("");//handling create post for username 
-  const [postContent, setPostContent] = useState("");//handling create post for post content
+  const [userName, setUserName] = useState("");
+  const [postContent, setPostContent] = useState("");
   const [image, setImage] = useState("");
 
   const handleImageClick = () => {
     //@ts-ignore
-    inputRef.current.click();//
+    inputRef.current.click();
   };
 
   const handleImageUpload = async (e: any) => {
@@ -103,18 +104,18 @@ const CreateModal = ({ setOpenCreateModal }: CreateModalProps) => {
     try {
       const res = await axios.post("http://localhost:45/upload", formData);
       console.log("response", res);
+      setImage(res?.data.url);
     } catch (error) {
       console.log("error", error);
     }
   };
-//create post function for create post 
+
   const handleCreatePost = async () => {
     try {
       const res = await axios.post("http://localhost:45/create-post", {
         username: userName,
         postDescription: postContent,
-        postImage:
-          "https://images.unsplash.com/photo-1723429676019-d52dea259562?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwzfHx8ZW58MHx8fHx8",
+        postImage: image,
       });
       console.log("response", res);
     } catch (error) {
@@ -133,17 +134,18 @@ const CreateModal = ({ setOpenCreateModal }: CreateModalProps) => {
         <div className="content">
           <div>
             <div className="profilePicture" onClick={handleImageClick}>
-              <img
-                src="https://images.unsplash.com/photo-1723429676019-d52dea259562?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwzfHx8ZW58MHx8fHx8"
-                alt=""
-              />
+              {image ? (
+                <img className="userImage" src={image} alt="" />
+              ) : (
+                <IoPerson className="userImage" />
+              )}
             </div>
             <input
               type="file"
               style={{ display: "none" }}
               ref={inputRef}
               onChange={(e) => handleImageUpload(e)}
-              accept=".jpeg, .jpg, .png, .gif"
+              accept=".jpeg, .jpg, .png, .gif, .mp4"
             />
           </div>
           <div className="formArea">
@@ -160,6 +162,7 @@ const CreateModal = ({ setOpenCreateModal }: CreateModalProps) => {
             <Button
               text="Create post"
               height="50px"
+              disabled={!postContent || !image}
               onClick={handleCreatePost}
             />
           </div>

@@ -11,8 +11,6 @@ const Content = () => {
   return (
     <Wrapper>
       <UserCard />
-      <UserCard />
-      <UserCard />
     </Wrapper>
   )
 }

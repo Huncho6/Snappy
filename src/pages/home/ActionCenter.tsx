@@ -3,9 +3,11 @@ import Button from "./Button";
 
 const Wrapper = styled.div`
 padding: 24px;
+padding-top: 10px;
 display: flex;
 gap: 24px;
-height: 100px;
+height: 60px;
+border-bottom: 1px solid #ccc;
 `;
 
 interface ActionCenterProps{
