@@ -102,7 +102,7 @@ const CreateModal = ({ setOpenCreateModal }: CreateModalProps) => {
     formData.append("image", file);
 
     try {
-      const res = await axios.post("http://localhost:45/upload", formData);
+      const res = await axios.post("https://snappy-server-2.onrender.com/upload", formData);
       console.log("response", res);
       setImage(res?.data.url);
     } catch (error) {
@@ -112,7 +112,7 @@ const CreateModal = ({ setOpenCreateModal }: CreateModalProps) => {
 
   const handleCreatePost = async () => {
     try {
-      const res = await axios.post("http://localhost:45/create-post", {
+      const res = await axios.post("https://snappy-server-2.onrender.com/create-post", {
         username: userName,
         postDescription: postContent,
         postImage: image,

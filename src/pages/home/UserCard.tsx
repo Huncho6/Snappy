@@ -93,7 +93,7 @@ const UserCard = () => {
   const fetchPosts = async () => {
     setIsLoading(true);
     try {
-      const res = await axios.get<{ data: Post[] }>("http://localhost:45/posts");
+      const res = await axios.get<{ data: Post[] }>("https://snappy-server-2.onrender.com/posts");
       console.log("Backend Data:", res.data.data); // Log the data from the backend
       setPosts(
         res.data.data.map((post) => ({
@@ -117,7 +117,7 @@ const UserCard = () => {
         return;
       }
       const res = await axios.put<{ data: Post }>(
-        `http://localhost:45/posts/${postId}/like`
+        `https://snappy-server-2.onrender.com/posts/${postId}/like`
       );
       const updatedPost = res.data.data;
 
